@@ -1,0 +1,98 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@500&family=Ysabeau+Office&display=swap');
+.active{
+    /* text-shadow: 5px 5px 10px #5f6368;  */
+    color: white;
+}
+nav{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* background-color: rgba(34, 33, 33, 0.9); */
+    background-color: #191c24; /*rgb(31 41 55)*/
+    backdrop-filter: blur(15px);
+    height: 70px;
+    font-family: 'Ysabeau Office', sans-serif;
+    border-bottom: 1px solid rgb(75, 74, 74);
+    color: rgb(107 114 128);
+    /* color: #5f6368; */
+    /* box-shadow: 0px 0px 15px 10px rgba(58, 138, 160, 0.8); */
+}
+nav .title{
+    font-size: 1.5rem;
+    margin: 1rem;
+    font-weight: bold;
+    text-decoration: none;
+    color: white;
+}
+
+nav ul{
+    display: flex;
+}
+
+nav ul li{
+    list-style: none;
+}
+
+nav ul li a{
+    font-size: 20px;
+    font-weight: 500;
+    display: block;
+    text-decoration: none;
+    padding: 0.5rem;
+    margin: 0 0.5rem;
+    border-radius: 0.5rem;
+    /* color: #5f6368; */
+    color: rgb(107 114 128);
+}
+
+nav ul li a:hover{
+    /* background-color: blue; */
+    /* text-shadow: 0px 0px 10px white; */
+    /* color: #5f6368; */
+    color: white;
+}
+
+nav .menu{
+    display: none;
+    position: absolute;
+    top: 0.75rem;
+    right: 0.5rem;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 2.25rem;
+    height: 2rem;
+}
+nav .menu span{
+    height: 0.4rem;
+    width: 100%;
+    background-color: #5f6368;
+    border-radius: 0.2rem;
+}
+
+@media(max-width:1079px) {
+    nav .menu{
+        display: flex;
+    }
+    nav{
+        align-items: start;
+        flex-direction: column;
+    }
+    nav ul{
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        margin-bottom: 0.25rem;
+        background-color: rgba(255, 255, 255, 0.9);
+    }
+    nav ul.open{
+        display: flex;
+    }
+    nav ul li{
+        width: 100%;
+        text-align: center;
+    }
+    nav ul li a{
+        margin: 0.2rem 0.5rem;
+    }
+
+}
