@@ -27,7 +27,7 @@ const getUserPost = async (req,res,next)=>{
 }
 
 const DeletePost = async(req,res,next)=>{
-    let id = req.body.id;
+    let id = req.params.id;
     console.log(id);
     await posts.findByIdAndDelete(id)
     .then(result => {res.json({message:'Post is Deleted'}).status(200)})
@@ -93,4 +93,22 @@ const AddLikes = async (req,res,next) =>{
   
 }
 
-module.exports = { createPost , getUserPost ,DeletePost , UpdatePost , getPost , getAllPost , AddLikes};
+const SearchPost = async(req,res) =>{
+    try{
+        const query = req.query.search;
+        // const searchResult = await posts.find({ $text : { $search : query} });
+        const searchResult = await posts.find({
+            $or: [
+                { title : { $regex : new RegExp(query, 'i') } },
+                { shortDesc : { $regex : new RegExp(query, 'i') } }
+            ]
+        })
+        res.status(200).json(searchResult);
+    }   
+    catch(error){
+        console.log("Error Searching post : ", error);
+        res.status(500).json({ message: 'Internal server error' });
+    }
+}
+
+module.exports = { createPost , getUserPost ,DeletePost , UpdatePost , getPost , getAllPost , AddLikes , SearchPost};

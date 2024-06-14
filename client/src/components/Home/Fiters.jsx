@@ -5,16 +5,9 @@ export default function BioCard() {
     <>
     <main>
     <h1 className='flex text-gray-200 font-bold justify-center text-2xl mt-12'>Popular Posts</h1>
-    <PopularPostCard />
-    <PopularPostCard/>
-    <PopularPostCard/>
-    {/* <div className='justify-center max-[640px]:bg- border w-full p-10 text-center rounded-2xl bg-[#191c24] mt-5'>        
-        <h1 className='flex text-gray-200 font-bold justify-center'>Popular Posts</h1>
-        <div>
-
-        </div>
-        <p className='text-gray-500'>at animi sequi sed, consequuntur assumenda quaerat voluptatum aut autem qui repellendus aspernatur quia molestias ex, corporis est?</p>
-    </div> */}
+    <PopularPostCard img_url={"/stokes.jpg"} title={"Stokes news"} subTitle={"Market is Bullish"}/>
+    <PopularPostCard img_url={"/educations.jpg"} title={"Education in india"} subTitle={"Changes in education rules"}/>
+    <PopularPostCard img_url={"/sports.jpg"} title={"Cricket live"} subTitle={"IPL is Coming soon in India"}/>
     </main>
     </>
   );

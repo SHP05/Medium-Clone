@@ -28,7 +28,8 @@ const Login = async (req, res) => {
                 token: token,
                 expiresIn: 21600,
                 userId: fetchUser._id,
-    
+                name: fetchUser.name,
+                email:fetchUser.email
             });
         })
             .catch(e => {

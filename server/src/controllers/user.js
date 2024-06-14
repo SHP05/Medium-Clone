@@ -1,4 +1,5 @@
 const User = require("../model/usermodel")
+const posts = require('../model/postmodel');
 const multer = require('multer')
 
 const GetUserData =async  (req, res, next) => {
@@ -24,7 +25,7 @@ const UpdateUser = async(req,res,next)=>{
 //Upload user Profile image
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
-      cb(null, '../../../clients/public/Images')
+      cb(null, '../../../client/public/Images')
     },
     filename: function (req, file, cb) {
       const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9)
@@ -37,6 +38,8 @@ const upload = multer({ storage: storage })
 const SetProfileImg = async (req,res,next) =>{
     let id = req.params.id;
     let imgname = req.file.filename;
+    const {FormData} = req.body
+    console.log(FormData);
     const user = await  User.findById({_id:id});
     if(user){
         await user.updateOne({img:imgname})
@@ -93,4 +96,23 @@ const unSavePost = async (req,res,next) =>{
     }
 }
 
-module.exports = { GetUserData , SetProfileImg , upload , UpdateUser , savePost , unSavePost};
+//get Saved post
+const getSavedPost = async(req,res)=>{
+    const id = req.params.id;
+    const user = await User.findById({_id:id});
+    try{
+        const userPosts = user.savePost;
+        const Data = {
+            "_id" : { "$in" : userPosts }
+        }
+
+        const result = await posts.find(Data)
+        res.status(200).json({result, message: "Saved Posts Recieved"});
+    }
+    catch(err){
+        res.json(err);
+        console.log(err);
+    }
+}
+
+module.exports = { GetUserData , SetProfileImg , upload , UpdateUser , savePost , unSavePost , getSavedPost};

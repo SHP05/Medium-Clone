@@ -1,4 +1,4 @@
-const { GetUserData , UpdateUser , savePost , unSavePost} = require("../controllers/user");    //, SetProfileImg ,upload
+const { GetUserData , UpdateUser , savePost , unSavePost , getSavedPost} = require("../controllers/user");    //, SetProfileImg ,upload
 const express = require('express') 
 const router = express.Router()
 
@@ -7,6 +7,7 @@ router.get("/getuser/:id",GetUserData);
 router.put("/userupdate/:id",UpdateUser);
 router.put("/savepost/:id",savePost);
 router.put("/unsavepost/:id",unSavePost);
+router.get("/savedpost/:id",getSavedPost);
 
 // //SAVE filE
 const User = require("../model/usermodel");

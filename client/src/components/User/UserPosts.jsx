@@ -1,8 +1,10 @@
-import { useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
+import { useNavigate, useParams } from "react-router-dom";
+import { useState , useEffect } from "react";
+import { FacebookShareButton , WhatsappShareButton } from "react-share";
+import { FacebookIcon , WhatsappIcon } from "react-share";
 
-const getUserPost = () =>{
+const UserPost = () =>{
 
     const navigate = useNavigate();
     const { id } = useParams();
@@ -17,33 +19,16 @@ const getUserPost = () =>{
             .catch(err => console.log(err))
     }
 
-    
-    const likeHandler = async (pid) => {
-        console.log(pid, id);
-        await axios.put('http://localhost:3001/addlikes', { id, pid })
-            .then(result => console.log('Like is Added', result))
-            .catch(err => console.log(err))
-        getUserPost();
+    const deletePostHandler = async (id) => {
+        console.log(id);
+        await axios.delete(`http://localhost:3001/deletepost/${id}`)
+            .then(result =>{ 
+                console.log(result)
+                getUserPost();
+            })
+            .catch(err => console.log(err));
+          
     }
-
-    const savePostHandler = async (pid) => {
-        await axios.put(`http://localhost:3001/savepost/${id}`, { id, pid })
-            .then(result => console.log('Save Post', result))
-            .catch(err => console.log(err))
-    }
-
-    const shareOnWhatsApp = (p) => {
-        const text = encodeURIComponent(`Check out this blog post: ${p.title}`);
-        const whatsappUrl = `https://api.whatsapp.com/send?text=${text}`;
-        window.open(whatsappUrl, '_blank');
-    };
-
-    const shareByEmail = (p) => {
-        const subject = encodeURIComponent('Check out this blog post');
-        const body = encodeURIComponent(`I thought you might find this blog post interesting: ${p.title}`);
-        const mailtoUrl = `mailto:?subject=${subject}&body=${body}`;
-        window.location.href = mailtoUrl;
-    };
 
     const TimeOfPost = (x) => {
         let Postday = new Date(x).getDate();
@@ -63,49 +48,57 @@ const getUserPost = () =>{
             return currDay - Postday;
     }
 
-    const deletePostHandler = async (id) => {
-        console.log(id);
-        await axios.delete('http://localhost:3001/deletepost', id)
-            .then(result => console.log(result))
+    const likeHandler = async (pid) => {
+        console.log(pid, id);
+        await axios.put('http://localhost:3001/addlikes', { id, pid })
+            .then(result => console.log('Like is Added', result))
             .catch(err => console.log(err))
-        // getUserPost();    
+        getUserPost();
     }
+
+    const savePostHandler = async (pid) => {
+        await axios.put(`http://localhost:3001/savepost/${id}`, { id, pid })
+            .then(result => console.log('Save Post', result))
+            .catch(err => console.log(err))
+    }
+
+    useEffect(() => {
+        getUserPost()
+    },[]);
+
     return(
-        <>
-             <div className="flex posts mx-auto">
+    <>
+           <div className="flex posts mx-auto mb-5">
                             <ul className="grid lg:grid-cols-2 justify-center gap-4">
                                 {
                                     posts.length === 0 ? (<h1> No Posts Found</h1>)
                                         : posts.map((p) => (
-                                            <div key={p._id} className='flex max-[1000px]:flex-wrap shadow-sm hover:shadow-xl shadow-gray-900 rounded-2xl  mt-5 text-gray-500'>
+                                            <div key={p._id} className='flex max-[1000px]:flex-wrap shadow-sm hover:shadow-xl shadow-gray-900 rounded-2xl bg-[#191c24] mt-5 text-gray-500'>
                                                 <div className="m-5">
                                                     <img src="" alt="user" className='w-32 h-32 rounded-2xl justify-start mx-auto shadow-md shadow-gray-700' />
                                                     <ul className="flex mt-10">
-                                                        <li className="cursor-pointer" onClick={() => savePostHandler(p._id)} ><i className="fa-regular fa-bookmark fa-xl m-3" style={{ color: "rgb(229 231 235)" }}></i></li> {/*<i class="fa-solid fa-bookmark"></i>*/}
+                                                        <li className="cursor-pointer" onClick={() => savePostHandler(p._id)} ><i className="fa-regular fa-bookmark fa-xl m-3" style={{ color: "rgb(229 231 235)" }}></i></li> 
+                                                        <span className=" mx-2 mb-1">
+                                                        <FacebookShareButton
+                                                            quote={p.title}
+                                                            hashtag="#React"
+                                                            url="https://www.facebook.com/"
+                                                            title="Send message on Facebook"
+                                                        >
+                                                            <FacebookIcon size={32} round={true}></FacebookIcon>
+                                                        </FacebookShareButton>
+                                                        </span>
 
-                                                        <li>
-                                                            <button className="sharebtn relative flex z-10 bg-gray-900  rounded-md p-2 opacity-50 hover:opacity-100 focus:outline-none focus:border-blue-500" title="click to enable menu">
-                                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" className="sharebtn h-6 w-6 text-blue-700">
-                                                                    <path fill="currentColor" d="M352 320c-22.608 0-43.387 7.819-59.79 20.895l-102.486-64.054a96.551 96.551 0 0 0 0-41.683l102.486-64.054C308.613 184.181 329.392 192 352 192c53.019 0 96-42.981 96-96S405.019 0 352 0s-96 42.981-96 96c0 7.158.79 14.13 2.276 20.841L155.79 180.895C139.387 167.819 118.608 160 96 160c-53.019 0-96 42.981-96 96s42.981 96 96 96c22.608 0 43.387-7.819 59.79-20.895l102.486 64.054A96.301 96.301 0 0 0 256 416c0 53.019 42.981 96 96 96s96-42.981 96-96-42.981-96-96-96z">
-                                                                    </path>
-                                                                </svg>
-                                                            </button>
-                                                            <div className="sharebtn-dropdown absolute mt-0 w-48 bg-white rounded-sm overflow-hidden shadow-lg z-20 hidden border border-gray-100">
-                                                                <a href="#" title="Share on Facebook (NB! does not work in this demo)" className="flex px-4 py-2 text-sm text-gray-800 border-b hover:bg-blue-100">
-                                                                    <li className="cursor-pointer" onClick={() => { shareByEmail(p) }}><i className="fa-brands fa-square-whatsapp" style={{ color: "rgb(229 231 235)" }}></i></li>
-
-                                                                    <span className="text-gray-600">Facebook</span>
-                                                                </a>
-                                                                <a href="#" title="Share on Twitter (NB! does not work in this demo)" className="flex px-4 py-2 text-sm text-gray-800 border-b hover:bg-blue-100">
-                                                                    <li className="cursor-pointer" onClick={() => { shareOnWhatsApp(p) }}><i className="fa-brands fa-square-whatsapp" style={{ color: "rgb(229 231 235)" }}></i></li>
-
-                                                                    <span className="text-gray-600">Twitter</span>
-                                                                </a>
-                                                            </div>
-                                                        </li>
-
-                                                        <li className="cursor-pointer" ><i className="fa-solid fa-share-nodes fa-xl m-3" style={{ color: "rgb(229 231 235)" }}></i></li>
-                                                        <li className="cursor-pointer" onClick={() => likeHandler(p._id)}><i className="fa-regular fa-heart fa-xl m-3" style={{ color: "rgb(229 231 235)" }}></i>{p.likes.length} </li> {/*<i class="fa-solid fa-heart"></i> */}
+                                                        <span className=" mx-2 mb-1">
+                                                        <WhatsappShareButton
+                                                            title={p.title}
+                                                            separator={p.title}
+                                                            url="https://web.whatsapp.com/"
+                                                        >
+                                                            <WhatsappIcon size={32} round={true}></WhatsappIcon>
+                                                        </WhatsappShareButton>
+                                                        </span>
+                                                        <li className="cursor-pointer" onClick={() => likeHandler(p._id)}><i className="fa-regular fa-heart fa-xl m-3" style={{ color: "rgb(229 231 235)" }}></i>{p.likes.length} </li> 
                                                     </ul>
                                                 </div>
                                                 <div className="p-10">
@@ -120,7 +113,7 @@ const getUserPost = () =>{
                                                     <h3>{p.catagory}</h3>
                                                     <div className="mt-5 -mb-5">
                                                         <ul className="flex gap-4">
-                                                            <button className="bg-transparent rounded-xl w-28 hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-1 px-3 border border-blue-500 hover:border-transparent" onClick={() => { navigate(`/post/${id}/${p._id}`) }} >
+                                                            <button className="bg-transparent rounded-xl w-28 hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-1 px-3 border border-blue-500 hover:border-transparent" onClick={() => navigate(`/post/${id}/${p._id}`) } >
                                                                 See Post
                                                             </button>
                                                             <button
@@ -142,8 +135,8 @@ const getUserPost = () =>{
                             </ul>
 
                         </div>
-        </>
+    </>
     )
 }
 
-export default getUserPost;
+export default UserPost;

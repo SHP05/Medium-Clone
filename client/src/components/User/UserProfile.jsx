@@ -46,19 +46,18 @@ const UserProfile = () =>{
     useEffect(() => {
         getUserData()
         getUserPost()
-    }, []);
+    },[]);
 
     return(
         <>
             <div className=" flex flex-wrap gap-4">
-                    <div className="profileImage ">
+                    <div className="profileImage">
                         <form>
-                            <div className="relative w-32 h-32 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600">
-                                {/* <svg className="absolute w-32 h-32 text-gray-400 -left-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"></path></svg> */}
+                            <div className="relative w-32 h-32 ml-9 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600">
                                 <img src={`/Images/${profileimg}`} alt="" />
                             </div>
 
-                            <input className="block w-52 text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
+                            <input className="block w-20 text-sm ml-14 mt-5 text-gray-900 border"
                                 type="file"
                                 placeholder="Upload profile img"
                                 onChange={(e) => {
@@ -66,12 +65,12 @@ const UserProfile = () =>{
                                     console.log(e.target.files[0]);
                                 }}
                             />
-                            <button type="submit" onClick={uploadImgHandeler}>Update Image</button>
+                            <button type="submit" className="ml-12" onClick={uploadImgHandeler}>Update Image</button>
                         </form>
                     </div>
-                    <div className="profileData">
-                        <h1 className="text-4xl font-semibold">{name}</h1>
-                        <p className="text-xl">{desc}</p>
+                    <div className="profileData mx-4">
+                        <h1 className="text-4xl font-semibold my-5">{name}</h1>
+                        <p className="text-xl my-5">{desc}</p>
                         {/* Edit Button */}
                         <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">
                             Follow
