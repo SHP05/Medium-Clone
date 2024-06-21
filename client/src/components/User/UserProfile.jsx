@@ -29,7 +29,9 @@ const UserProfile = () => {
                 setDesc(result.data.desc)
                 setPImg(result.data.img)
             })
-            .catch(err => console.log(err))
+            .catch(err => {
+                console.log(err)
+            })
     }
 
     const getUserPost = async () => {
