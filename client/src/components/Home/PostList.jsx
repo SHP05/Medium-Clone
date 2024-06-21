@@ -45,7 +45,7 @@ const PostList = () => {
                 
                 {/* Filter Button */}
                 <div>
-                    <h2 className="text-4xl text-white my-5">Topics</h2>
+                    <h2 className="text-4xl text-white my-5">Topic</h2>
                     <Topicbtn name="All" click={filterPostHandler} category="" />
                     <Topicbtn name="Technology" click={filterPostHandler} category="Technology" />
                     <Topicbtn name="Education" click={filterPostHandler} category="Education" />
