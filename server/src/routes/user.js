@@ -1,15 +1,16 @@
 const { GetUserData , UpdateUser , savePost , unSavePost , getSavedPost} = require("../controllers/user");    //, SetProfileImg ,upload
 const express = require('express') 
-const router = express.Router()
+const router = express.Router();
+const { authenticateToken } = require('../middleware/auth');
 
 // //Get user data and send token in home page
-router.get("/getuser/:id",GetUserData);
+router.get("/getuser/:id",authenticateToken,GetUserData);
 router.put("/userupdate/:id",UpdateUser);
 router.put("/savepost/:id",savePost);
 router.put("/unsavepost/:id",unSavePost);
-router.get("/savedpost/:id",getSavedPost);
+router.get("/savedpost/:id",authenticateToken,getSavedPost);
 
-// //SAVE filE
+//SAVE filE
 const User = require("../model/usermodel");
 const multer = require('multer');
 const path = require('path');

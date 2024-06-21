@@ -14,6 +14,7 @@ export default function ProfileUpdate(props) {
   const [name, setName] = React.useState('');
   const [desc, setDesc] = React.useState('');
   const id = props.id;
+  const token = localStorage.getItem('token');
 
   return (
     <React.Fragment>
@@ -32,7 +33,11 @@ export default function ProfileUpdate(props) {
               event.preventDefault();
               setOpen(false);
 
-              await axios.put(`http://localhost:3001/userupdate/${id}`,{name , desc} )
+            await axios.put(`http://localhost:3001/userupdate/${id}`,{name , desc},{
+                headers:{
+                    "authorization": `Barrer ${token}`
+                }
+            })
               .then(result => {
                 console.log(result)
             })

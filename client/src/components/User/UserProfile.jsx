@@ -1,18 +1,30 @@
-import { useState , useEffect } from "react";
-import { useParams } from "react-router-dom"; 
+import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+import UserProfileSkeleton from "../UI/UserPageSkeleton";
 import axios from "axios";
 
-const UserProfile = () =>{
-    const {id} = useParams();
+const UserProfile = () => {
+    const { id } = useParams();
     const [name, setName] = useState('');
     const [desc, setDesc] = useState('');
     const [posts, setposts] = useState([]);
-    const [profileimg,setPImg] = useState(''); 
+    const [profileimg, setPImg] = useState('');
     const [file, setFile] = useState('');
+    const [isLoadingUser, setIsLoadingUser] = useState(true);
+    const token = localStorage.getItem('token');
 
+    if (token === '')
+        console.log("Token is empty")
+    else
+        console.log(token);
     const getUserData = async () => {
-        await axios.get(`http://localhost:3001/getuser/${id}`)
+        await axios.get(`http://localhost:3001/getuser/${id}`, {
+            headers: {
+                "Authorization": `Barrer ${token}`
+            }
+        })
             .then(result => {
+                setIsLoadingUser(false)
                 setName(result.data.name)
                 setDesc(result.data.desc)
                 setPImg(result.data.img)
@@ -32,7 +44,7 @@ const UserProfile = () =>{
     const uploadImgHandeler = async (e) => {
         e.preventDefault();
         const formdata = new FormData();
-        formdata.append('file',file)
+        formdata.append('file', file)
 
         console.log(formdata);
         await axios.put(`http://localhost:3001/uploadimg/${id}`,
@@ -46,37 +58,43 @@ const UserProfile = () =>{
     useEffect(() => {
         getUserData()
         getUserPost()
-    },[]);
+    }, []);
 
-    return(
+    return (
         <>
-            <div className=" flex flex-wrap gap-4">
-                    <div className="profileImage">
-                        <form>
-                            <div className="relative w-32 h-32 ml-9 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600">
-                                <img src={`/Images/${profileimg}`} alt="" />
-                            </div>
+            {
 
-                            <input className="block w-20 text-sm ml-14 mt-5 text-gray-900 border"
-                                type="file"
-                                placeholder="Upload profile img"
-                                onChange={(e) => {
-                                    setFile(e.target.files[0])
-                                    console.log(e.target.files[0]);
-                                }}
-                            />
-                            <button type="submit" className="ml-12" onClick={uploadImgHandeler}>Update Image</button>
-                        </form>
+                isLoadingUser === "false" && <UserProfileSkeleton />
+            }
+            
+                    <div className=" flex flex-wrap gap-4">
+                        <div className="profileImage">
+                            <form>
+                                <div className="relative w-32 h-32 ml-9 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600">
+                                    <img src={`/Images/${profileimg}`} alt="" />
+                                </div>
+
+                                <input className="block w-20 text-sm ml-14 mt-5 text-gray-900 border"
+                                    type="file"
+                                    placeholder="Upload profile img"
+                                    onChange={(e) => {
+                                        setFile(e.target.files[0])
+                                        console.log(e.target.files[0]);
+                                    }}
+                                />
+                                <button type="submit" className="ml-12" onClick={uploadImgHandeler}>Update Image</button>
+                            </form>
+                        </div>
+                        <div className="profileData mx-4">
+                            <h1 className="text-4xl font-semibold my-5">{name}</h1>
+                            <p className="text-xl my-5">{desc}</p>
+                            {/* Edit Button */}
+                            <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">
+                                Follow
+                            </button>
+                        </div>
                     </div>
-                    <div className="profileData mx-4">
-                        <h1 className="text-4xl font-semibold my-5">{name}</h1>
-                        <p className="text-xl my-5">{desc}</p>
-                        {/* Edit Button */}
-                        <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">
-                            Follow
-                        </button>
-                    </div>
-                </div>
+            
         </>
     )
 }

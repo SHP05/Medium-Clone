@@ -1,11 +1,12 @@
 const express = require('express')
 const router = express.Router();
 const { createPost , getUserPost , DeletePost , UpdatePost , getPost , getAllPost , AddLikes , SearchPost } = require('../controllers/post');
+const { authenticateToken } = require('../middleware/auth');
 
 router.post('/createpost/:id',createPost);
 router.put('/updatepost',UpdatePost);
 router.delete('/deletepost/:id',DeletePost);
-router.get('/getuserpost/:id',getUserPost);
+router.get('/getuserpost/:id',authenticateToken,getUserPost);
 router.get('/getpost/:id',getPost);
 router.get('/getallpost',getAllPost);
 router.put('/addlikes/',AddLikes);

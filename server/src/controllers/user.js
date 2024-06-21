@@ -2,12 +2,12 @@ const User = require("../model/usermodel")
 const posts = require('../model/postmodel');
 const multer = require('multer')
 
-const GetUserData =async  (req, res, next) => {
+const GetUserData =async  (req, res) => {
     const id = req.params.id;
     await User.findById(id)
         .then(result => {
             res.json(result)
-            // console.log(result);
+            console.log(result);
         })
         .catch(err => res.json(err))
 }

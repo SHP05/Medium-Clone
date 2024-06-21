@@ -3,15 +3,18 @@ import { useEffect, useState } from "react";
 import Topicbtn from "../UI/Topicbtn";
 import DisplayPost from "./DisplayPosts";
 import Searching from "./Searching";
+import HomePageSkeleton from "../UI/HomePageSkeleton";
 
 const PostList = () => {
 
     const [posts, setposts] = useState([]);
     const [filteredPosts, setfilteredPosts] = useState([]);
+    const [isLoading,setIsLoading] = useState(true);
 
     const getUserPost = async () => {
         await axios.get(`http://localhost:3001/getallpost`)
             .then(result => {
+                setIsLoading(false);
                 setposts(result.data.data);
                 console.log(result.data.data);
             })
@@ -55,7 +58,9 @@ const PostList = () => {
                     <Topicbtn name="History" click={filterPostHandler} category="History" />
                     <Topicbtn name="Cripto" click={filterPostHandler} category="Cripto" />
                 </div>
-
+                {
+                    isLoading &&  <HomePageSkeleton/> 
+                }
                 {/* Display post */}
                 {filteredPosts.length !== 0 && <DisplayPost posts={filteredPosts} message="No search post"/> }
                 {posts.length !== 0 && <DisplayPost posts={posts} message="Posts Not Found"/> }

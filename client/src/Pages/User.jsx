@@ -10,31 +10,6 @@ import CreatePostbtn from "../components/UI/CreatePostbtn";
 
 const User = () => {
     const { id } = useParams();
-    // const [posts, setposts] = useState([]);
-
-    // const getUserPost = async () => {
-    //     await axios.get(`http://localhost:3001/getuserpost/${id}`)
-    //         .then(result => {
-    //             setposts(result.data.Data);
-    //             // console.log(posts);
-    //         })
-    //         .catch(err => console.log(err))
-    // }
-
-    // const uploadImgHandeler = async (e) => {
-    //     e.preventDefault();
-    //     const formdata = new FormData();
-    //     formdata.append('file', file)
-
-    //     console.log(formdata);
-    //     await axios.put(`http://localhost:3001/uploadimg/${id}`,
-    //         formdata,
-    //         { headers: { "Content-Type": "multipart/form-data" } }
-    //     )
-    //         .then(result => console.log(result))
-    //         .catch(err => console.log(err))
-    // }
-
     return (
         <>
             <Navbar />
