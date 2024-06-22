@@ -58,11 +58,11 @@ const CreatePost = () => {
                                 <option selected className="bg-slate-800">Choose Category</option>
                                 <option value="Technology" className="bg-slate-800">Technology</option>
                                 <option value="Sports" className="bg-slate-800">Sports</option>
-                                <option value="FR" className="bg-slate-800">Education</option>
-                                <option value="Education" className="bg-slate-800">Bussiness</option>
+                                <option value="Education" className="bg-slate-800">Education</option>
+                                <option value="Business" className="bg-slate-800">Business</option>
                                 <option value="Travel" className="bg-slate-800">Travel</option>
                                 <option value="Gaming" className="bg-slate-800">Gaming</option>
-                                <option value="Cripto" className="bg-slate-800">Cripto</option>
+                                <option value="Crypto" className="bg-slate-800">Crypto</option>
                                 <option value="Hobbies" className="bg-slate-800">Hobbies</option>
                                 <option value="History" className="bg-slate-800">History</option>
                             </select>

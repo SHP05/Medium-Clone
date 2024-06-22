@@ -15,14 +15,14 @@ const DisplaySavedPost = (Props) => {
         setPostData(Props.posts);
         setMessage(Props.message);
         console.log(PostData);
-    },[]);
+    },[Props.posts]);
 
     return (
         <>
             {
                 PostData.length === 0 ? <p className="text-white">{Message}</p>
                     : PostData.map((p) => (
-                        <div key={p.id} className='flex max-[1000px]:flex-wrap w-full text-white rounded-2xl bg-[#191c24] mt-5 '> {/*bg-slate-900*/}
+                        <div key={p._id} className='flex max-[1000px]:flex-wrap w-full text-white rounded-2xl bg-[#191c24] mt-5 '> {/*bg-slate-900*/}
                             <div className="p-8 text-gray-500">
                                 <h1 className="flex">
                                     <img className="inline-block h-8 w-8 rounded-full ring-2 ring-white" src="https://images.unsplash.com/photo-1491528323818-fdd1faba62cc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="" />

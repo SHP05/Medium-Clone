@@ -17,7 +17,7 @@ const Home = () => {
 
     useEffect(()=>{
         getUserData()
-    },[]);
+    },[]);  
 
     return (
         <>

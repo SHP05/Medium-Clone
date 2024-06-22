@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams , useNavigate } from "react-router-dom";
 import UserProfileSkeleton from "../UI/UserPageSkeleton";
 import axios from "axios";
+import { NotifyError } from "../UI/Notification";
 
 const UserProfile = () => {
     const { id } = useParams();
@@ -12,6 +13,7 @@ const UserProfile = () => {
     const [file, setFile] = useState('');
     const [isLoadingUser, setIsLoadingUser] = useState(true);
     const token = localStorage.getItem('token');
+    const navigate = useNavigate();
 
     if (token === '')
         console.log("Token is empty")
@@ -23,15 +25,23 @@ const UserProfile = () => {
                 "Authorization": `Barrer ${token}`
             }
         })
-            .then(result => {
-                setIsLoadingUser(false)
-                setName(result.data.name)
-                setDesc(result.data.desc)
-                setPImg(result.data.img)
-            })
-            .catch(err => {
-                console.log(err)
-            })
+        .then(result => {
+            setIsLoadingUser(false)
+            setName(result.data.name)
+            setDesc(result.data.desc)
+            setPImg(result.data.img)
+        })
+        .catch(err => {
+            console.log(err)
+            NotifyError("You are not Loged in");
+            NavigateToLogin();
+        })
+    }
+
+    const NavigateToLogin = () =>{
+        setTimeout(()=>{
+            navigate('/login')
+        },3000);
     }
 
     const getUserPost = async () => {

@@ -4,6 +4,7 @@ import Topicbtn from "../UI/Topicbtn";
 import DisplayPost from "./DisplayPosts";
 import Searching from "./Searching";
 import HomePageSkeleton from "../UI/HomePageSkeleton";
+import DisplayFilteredPost from "./DisplayFilterPost"
 
 const PostList = () => {
 
@@ -23,7 +24,6 @@ const PostList = () => {
 
     const filterPostHandler = (cat) => {
         let fP = posts.filter(i => i.catagory === cat);
-        // setposts(fP)
         setfilteredPosts(fP);
         console.log(filteredPosts);
     }
@@ -35,6 +35,7 @@ const PostList = () => {
 
     useEffect(() => {
         getUserPost();
+        
     },[]);
     
     return (
@@ -42,7 +43,7 @@ const PostList = () => {
             <div className="flex-col">
                 {/* Search Bar */}
                 <Searching searchQuery={HandleSearchPost}/>
-                
+
                 {/* Filter Button */}
                 <div>
                     <h2 className="text-4xl text-white my-5">Topic</h2>
@@ -52,17 +53,17 @@ const PostList = () => {
                     <Topicbtn name="Sports" click={filterPostHandler} category="Sports" />
                     <Topicbtn name="Travel" click={filterPostHandler} category="Travel" />
                     <Topicbtn name="Gaming" click={filterPostHandler} category="Gaming" />
-                    <Topicbtn name="Bussiness" click={filterPostHandler} category="Bussiness" />
+                    <Topicbtn name="Business" click={filterPostHandler} category="Business" />
                     <Topicbtn name="Art" click={filterPostHandler} category="Art" />
                     <Topicbtn name="Hobbies" click={filterPostHandler} category="Hobbies" />
                     <Topicbtn name="History" click={filterPostHandler} category="History" />
-                    <Topicbtn name="Cripto" click={filterPostHandler} category="Cripto" />
+                    <Topicbtn name="Crypto" click={filterPostHandler} category="Crypto" />
                 </div>
                 {
                     isLoading &&  <HomePageSkeleton/> 
                 }
                 {/* Display post */}
-                {filteredPosts.length !== 0 && <DisplayPost posts={filteredPosts} message="No search post"/> }
+                <DisplayFilteredPost posts={filteredPosts} message="No Search post Found"/>
                 {posts.length !== 0 && <DisplayPost posts={posts} message="Posts Not Found"/> }
             </div>
         </>

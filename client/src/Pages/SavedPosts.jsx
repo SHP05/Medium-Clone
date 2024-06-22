@@ -1,16 +1,19 @@
 import axios from 'axios'
 import { useEffect, useState } from 'react'
-import DisplayPost from '../components/Home/DisplayPosts'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import Navbar from '../components/Navbar/NavbarResp'
 import Sidebar from '../components/Home/SideBar'
 import SavePostSkeleton from '../components/UI/SavePostPageSkeleton'
 import DisplaySavedPost from '../components/User/DisplaySavedPost'
+import { NotifyError } from '../components/UI/Notification'
+import { ToastContainer } from 'react-toastify';
+
 
 const SavedPosts = () => {
     const { id } = useParams();
     const [post, setPost] = useState([]);
     const token = localStorage.getItem('token');
+    const navigate = useNavigate();
 
     const HandleSavePost = async () => {
         try {
@@ -23,7 +26,15 @@ const SavedPosts = () => {
             setPost(response.data.result);
         } catch (err) {
             console.log("Data not reached" + err);
+            NotifyError("You are not Autherised please login again");
+            NavigateToLogin();
         }
+    }
+
+    const NavigateToLogin = () =>{
+        setTimeout(()=>{
+            navigate('/login')
+        },3000);
     }
 
     useEffect(() => {
@@ -48,6 +59,19 @@ const SavedPosts = () => {
                 </div>
                 }
             </section>
+            <ToastContainer />
+            <ToastContainer
+                position="bottom-right"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="dark"
+                transition:Bounce />
         </>
     )
 }

@@ -21,8 +21,12 @@ export default function AccountMenu() {
   };
 
   const { id } = useParams();
-
-  const userFirstChar = localStorage.getItem('name').substring(0,1);
+  
+  let userFirstChar = "";
+  if(localStorage.getItem('name') !== null)
+  {
+    userFirstChar = localStorage.getItem('name').substring(0,1);
+  }
 
   const logoutHandeler = () => {
     localStorage.clear();

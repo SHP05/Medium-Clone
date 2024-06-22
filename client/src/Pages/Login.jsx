@@ -2,38 +2,16 @@ import { useState } from "react";
 import axios from "axios"
 import { useNavigate } from "react-router-dom"
 import Link from '@mui/joy/Link';
-import { Bounce, ToastContainer, toast } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import {notifySuccess , notifyWarning } from '../components/UI/Notification'
 
 const Login = () => {
     const navigate = useNavigate();
     const [email, setemail] = useState('');
     const [password, setpassword] = useState('');
 
-    const notifyWarning = () => toast.warning("Your ID or Password is incorrect!",
-        {
-            position: "bottom-right",
-            autoClose: 2000,
-            hideProgressBar: true,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "dark",
-        }
-    );
 
-    const notifySuccess = () => toast.success("Logged in successfully", {
-        position: "bottom-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "dark",
-        transition: Bounce
-    });
 
     const submitHandler = async (e) => {
         e.preventDefault();

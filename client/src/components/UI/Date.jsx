@@ -24,7 +24,7 @@ const DateOfPost = ({postDate}) =>{
     }
 
     return(<>
-        <h3 className="justify-end text-gray-700 text-xl">{TimeOfPost(postDate)}</h3>
+        <p className="justify-end text-gray-700 text-xl">{TimeOfPost(postDate)}</p>
     </>)
 }
 export default DateOfPost;
