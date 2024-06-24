@@ -19,17 +19,17 @@ const path = require('path');
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
         const fpath = path.join(__dirname,'../../../clients/public/Images');
-      cb(null,fpath);
+      cb(null,'../../../client/public/Images');
     },
     filename: function (req, file, cb) {
       const uniqueSuffix = Date.now()
-      cb(null, file.originalname + uniqueSuffix )
+      cb(null, `${Date.now()}_${file.originalname}`)
     }
 })
   
 const upload = multer({ storage: storage })
 // upload.single('file') , 
-router.put("/uploadimg/:id",upload.single('file') ,async(req,res) =>{
+router.post("/uploadimg/:id",upload.single('file') ,async(req,res) =>{
     let id = req.params.id;
     let imgname = req.file.filename;
     console.log(id);

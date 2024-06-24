@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
-import { useParams , useNavigate } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import UserProfileSkeleton from "../UI/UserPageSkeleton";
 import axios from "axios";
 import { NotifyError } from "../UI/Notification";
+import UploadProfileImg from "./UploadPRofileimg";
 
 const UserProfile = () => {
     const { id } = useParams();
@@ -19,29 +20,30 @@ const UserProfile = () => {
         console.log("Token is empty")
     else
         console.log(token);
+    
     const getUserData = async () => {
         await axios.get(`http://localhost:3001/getuser/${id}`, {
             headers: {
                 "Authorization": `Barrer ${token}`
             }
         })
-        .then(result => {
-            setIsLoadingUser(false)
-            setName(result.data.name)
-            setDesc(result.data.desc)
-            setPImg(result.data.img)
-        })
-        .catch(err => {
-            console.log(err)
-            NotifyError("You are not Loged in");
-            NavigateToLogin();
-        })
+            .then(result => {
+                setIsLoadingUser(false)
+                setName(result.data.name)
+                setDesc(result.data.desc)
+                setPImg(result.data.img)
+            })
+            .catch(err => {
+                console.log(err)
+                NotifyError("You are not Loged in");
+                NavigateToLogin();
+            })
     }
 
-    const NavigateToLogin = () =>{
-        setTimeout(()=>{
+    const NavigateToLogin = () => {
+        setTimeout(() => {
             navigate('/login')
-        },3000);
+        }, 3000);
     }
 
     const getUserPost = async () => {
@@ -76,9 +78,10 @@ const UserProfile = () => {
         <>
             {
 
-                isLoadingUser === "false" && <UserProfileSkeleton />
-            }
-            
+                isLoadingUser === true ? 
+                
+                    <UserProfileSkeleton /> :
+
                     <div className=" flex flex-wrap gap-4">
                         <div className="profileImage">
                             <form>
@@ -95,6 +98,7 @@ const UserProfile = () => {
                                     }}
                                 />
                                 <button type="submit" className="ml-12" onClick={uploadImgHandeler}>Update Image</button>
+                                <UploadProfileImg id={id} />
                             </form>
                         </div>
                         <div className="profileData mx-4">
@@ -106,7 +110,7 @@ const UserProfile = () => {
                             </button>
                         </div>
                     </div>
-            
+            }
         </>
     )
 }
