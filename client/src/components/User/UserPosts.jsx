@@ -8,6 +8,7 @@ import { ToastContainer } from 'react-toastify';
 import LikePostButton from "../UI/LikePostButton";
 import SavePostButton from "../UI/SavePostButton";
 import DateOfPost from "../UI/Date";
+import {NotifyError} from "../UI/Notification"
 
 const UserPost = () => {
 
@@ -38,6 +39,7 @@ const UserPost = () => {
                 setIsLoadingPost(false);
                 console.log(result)
                 getUserPost();
+                NotifyError("Post Deleted Successfully")
             })
             .catch(err => console.log(err));
 
@@ -118,7 +120,7 @@ const UserPost = () => {
                 </ul>
             </div>
             <ToastContainer
-                position="top-center"
+                position="top-right"
                 autoClose={1500}
                 hideProgressBar={false}
                 newestOnTop={false}

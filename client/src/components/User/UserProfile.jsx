@@ -59,7 +59,7 @@ const UserProfile = () => {
         e.preventDefault();
         const formdata = new FormData();
         formdata.append('file', file)
-
+            console.log(formdata);
         console.log(formdata);
         await axios.put(`http://localhost:3001/uploadimg/${id}`,
             formdata,

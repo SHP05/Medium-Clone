@@ -14,7 +14,7 @@ const Notify = (text) => toast.success(text, {
 });
 
 const NotifyError = (text) =>toast.error(text, {
-    position: "top-center",
+    position: "top-right",
     autoClose: 5000,
     hideProgressBar: true,
     closeOnClick: true,

@@ -11,21 +11,18 @@ const UpdatePost = ()=>{
     const [title, setTitle] = useState('');
     const [image, setImage] = useState('');
     const [category, setCategory] = useState('');
-    const [shortDesc, setShortDesc] = useState('');
-    const [postdata, setPostdata] = useState([]);
-    
+    const [shortDesc, setShortDesc] = useState('');    
 
     const getPost = async () => {
         console.log(pid);
         await axios.get(`http://localhost:3001/getpost/${pid}`)
             .then(result => {
-                console.log(result);
-                setPostdata(result.data.data);
-                setTitle(result.data.title)
-                setDesc(result.data.desc)
-                setShortDesc(result.data.shortDesc)
-                setImage(result.data.image)
-                setCategory(result.data.catagory)
+                console.log(result.data.data);
+                setTitle(result.data.data.title)
+                setDesc(result.data.data.desc)
+                setShortDesc(result.data.data.shortDesc)
+                setImage(result.data.data.image)
+                setCategory(result.data.data.catagory)
             })
             .catch(err => console.log(err))
     }
@@ -46,20 +43,21 @@ const UpdatePost = ()=>{
     return(
         <>
         <Navbar useId={id}/>
+            <section className='bg-gray-950'>
             <div className='flex bg-gray-950 h-full'>
                 <div className='flex-none fixed w-14'><Sidebar/></div>
                 <div className="bg-gray-800 grow mx-20">
-            <h1 className="text-white text-3xl font-bold text-center mb-3">📃 Update Your Post 📃</h1>
-            <form className="bg-gray-800 text-lg flex" onSubmit={updatePostHandler}>
+            <h1 className="text-white text-3xl bg-gray-950 font-bold text-center p-3">📃 Update Your Post 📃</h1>
+            <form className="bg-gray-950 text-lg flex" onSubmit={updatePostHandler}>
                 <div className="grid gap-6 mb-6 md:grid-cols-1 mx-auto w-2/3 border rounded-lg p-3 border-gray-500 shadow-2xl">
                     <label  htmlFor="post-title" className="block mb-1 font-medium text-gray-300 ">Post Title</label>
-                    <input name="title" onChange={(e) => setTitle(e.target.value)} type="text" className="bg-gray-500/25 border border-gray-500 text-gray-200 text-lg rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Post Title"  />
+                    <input name="title" defaultValue={title} onChange={(e) => setTitle(e.target.value)} type="text" className="bg-gray-500/25 border border-gray-500 text-gray-200 text-lg rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Post Title"  />
                     
                     <label htmlFor="post-shortdesc" className="block mb-1 font-medium text-gray-300 ">Post Short Description</label>
-                    <input name="shortDesc" onChange={(e) => setShortDesc(e.target.value)} type="text" className="bg-gray-500/25 border border-gray-500 text-gray-200 text-lg rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Post Short Description"  />
+                    <input name="shortDesc" defaultValue={shortDesc} onChange={(e) => setShortDesc(e.target.value)} type="text" className="bg-gray-500/25 border border-gray-500 text-gray-200 text-lg rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Post Short Description"  />
 
                     <label htmlFor="message" className="block mb-1 font-medium text-gray-300 ">Describe Your Post</label>
-                    <textarea name="desc" onChange={(e) => setDesc(e.target.value)} id="message" rows="4" className="bg-gray-500/25 border border-gray-500 text-gray-200 text-lg rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Write your blog here..."></textarea>
+                    <textarea name="desc" defaultValue={desc} onChange={(e) => setDesc(e.target.value)} id="message" rows="4" className="bg-gray-500/25 border border-gray-500 text-gray-200 text-lg rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Write your blog here..."></textarea>
 
                     <label htmlFor="countries" className="block mb-1 font-medium text-gray-300 ">Select Post Category</label>
                     <select name="catagory" onChange={(e) => setCategory(e.target.value)} id="countries" className="bg-gray-500/25 border border-gray-500 text-gray-200 text-lg rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
@@ -84,6 +82,7 @@ const UpdatePost = ()=>{
             </form>
             </div>
             </div>
+            </section>
         </>
     )
 }
