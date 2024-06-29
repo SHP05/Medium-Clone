@@ -15,16 +15,11 @@ const UserProfile = () => {
     const [isLoadingUser, setIsLoadingUser] = useState(true);
     const token = localStorage.getItem('token');
     const navigate = useNavigate();
-
-    if (token === '')
-        console.log("Token is empty")
-    else
-        console.log(token);
     
     const getUserData = async () => {
         await axios.get(`http://localhost:3001/getuser/${id}`, {
             headers: {
-                "Authorization": `Barrer ${token}`
+                "authorization": `Barrer ${token}`
             }
         })
             .then(result => {
@@ -47,7 +42,11 @@ const UserProfile = () => {
     }
 
     const getUserPost = async () => {
-        await axios.get(`http://localhost:3001/getuserpost/${id}`)
+        await axios.get(`http://localhost:3001/getuserpost/${id}`,{
+            headers: {
+                "authorization": `Barrer ${token}`
+            }
+        })
             .then(result => {
                 setposts(result.data.Data);
                 console.log(posts);
@@ -104,10 +103,6 @@ const UserProfile = () => {
                         <div className="profileData mx-4">
                             <h1 className="text-4xl font-semibold my-5">{name}</h1>
                             <p className="text-xl my-5">{desc}</p>
-                            {/* Edit Button */}
-                            <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">
-                                Follow
-                            </button>
                         </div>
                     </div>
             }

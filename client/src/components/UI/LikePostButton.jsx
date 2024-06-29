@@ -4,7 +4,6 @@ import { Notify } from "./Notification";
 const LikePostButton = ({id,length,liked}) =>{
 
     const likeHandler = async (pid) => {
-        console.log(pid, id);
         await axios.put('http://localhost:3001/addlikes', { id, pid })
             .then(result => {
                 console.log('Like is Added', result);
