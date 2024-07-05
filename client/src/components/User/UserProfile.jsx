@@ -19,7 +19,7 @@ const UserProfile = () => {
     const getUserData = async () => {
         await axios.get(`http://localhost:3001/getuser/${id}`, {
             headers: {
-                "Authorization": `Barrer ${token}`
+                "authorization": `Barrer ${token}`
             }
         })
             .then(result => {
@@ -42,7 +42,11 @@ const UserProfile = () => {
     }
 
     const getUserPost = async () => {
-        await axios.get(`http://localhost:3001/getuserpost/${id}`)
+        await axios.get(`http://localhost:3001/getuserpost/${id}`,{
+            headers: {
+                "authorization": `Barrer ${token}`
+            }
+        })
             .then(result => {
                 setposts(result.data.Data);
                 console.log(posts);
@@ -99,8 +103,11 @@ const UserProfile = () => {
                         <div className="profileData mx-4">
                             <h1 className="text-4xl font-semibold my-5">{name}</h1>
                             <p className="text-xl my-5">{desc}</p>
+<<<<<<< HEAD
                             {/* Edit Button */}
                            
+=======
+>>>>>>> c004ed356eefaf81db0fc2f75a23159b2c7a1c49
                         </div>
                     </div>
             }

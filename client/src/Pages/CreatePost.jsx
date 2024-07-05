@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from 'axios';
-import { useParams, useNavigate } from 'react-router-dom'
+import { useParams, useNavigate, json } from 'react-router-dom'
 import Navbar from "../components/Navbar/NavbarResp";
 import Sidebar from "../components/Home/SideBar";
 
@@ -13,13 +13,19 @@ const CreatePost = () => {
     const [catagory, setCategory] = useState('');
     const [userName, setUserName] = useState('');
     const [userImg, setUserimg] = useState('');
+    const token = localStorage.getItem('token');
 
     const navigate = useNavigate();
     const getUserData = async () => {
-        await axios.get(`http://localhost:3001/getuser/${id}`)
+        await axios.get(`http://localhost:3001/getuser/${id}`,{
+            headers: {
+                "authorization": `Barrer ${token}`
+            }
+        })
             .then(result => {
                 setUserName(result.data.name)
                 setUserimg(result.data.img)
+                console.log(result);
             })
             .catch(err => console.log(err))
     }
@@ -33,7 +39,7 @@ const CreatePost = () => {
     }
 
     useEffect(() => {
-        getUserData()
+        getUserData();
     }, [])
     return (
         <>
@@ -76,7 +82,6 @@ const CreatePost = () => {
                     </form>
                 </div>
             </div>
-
         </>
     )
 }
