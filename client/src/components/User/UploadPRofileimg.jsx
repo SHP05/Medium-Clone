@@ -22,33 +22,53 @@
 // }
 
 // export default App
-import { useState } from "react"
+import { useState , useEffect} from "react"
 import axios from 'axios'
 
 function UploadProfileImg({id}) {
   const [file, setFile] = useState()
-
-  const upload = () => {
-    const data = new FormData()
-    data.append('file', file)
-    console.log(file);
-    console.log(data);
-
-    axios.post(`http://localhost:3001/upload/${id}`,data,
-      {
-        headers:{"Content-Type": "multipart/form-data"}
-      }
-     )
-    .then( res => {
-      console.log(res);
-    })
-    .catch(er => console.log(er))
-  }
   
+  useEffect(() => {
+    if (file) {
+      console.log("Selected file:", file);
+      const data = new FormData();
+      data.append('file', file);
+      console.log("FormData contents:", data);
+
+      axios.post(`http://localhost:3001/uploadimg/${id}`, data, {
+        headers: { "Content-Type": "multipart/form-data" }
+      })
+        .then(res => {
+          console.log("Response:", res);
+        })
+        .catch(err => console.log("Error:", err));
+    }
+  }, [file, id]);
+
+
+  // const upload = () => {
+  //   const data = new FormData()
+  //   data.append('file', file)
+  //   console.log(file);
+  //   console.log(data);
+
+  //   axios.post(`http://localhost:3001/upload/${id}`,data,
+  //     {
+  //       headers:{"Content-Type": "multipart/form-data"}
+  //     }
+  //    )
+  //   .then( res => {
+  //     console.log(res);
+  //   })
+  //   .catch(er => console.log(er))
+  // }
+  const handleFileChange = (e) => {
+    setFile(e.target.files[0]);
+  };
    return (
     <div>
-      <input type="file" onChange={(e) => {setFile(e.target.files[0])}}/>
-      <button type="button" onClick={upload}>Upload</button>
+       <input type="file" onChange={handleFileChange} />
+      <button type="button" onClick={()=>console.log("Upload Button clicked")}>Upload</button>
     </div>
   )
 }

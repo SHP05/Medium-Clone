@@ -14,16 +14,20 @@ const SavedPosts = () => {
     const [post, setPost] = useState([]);
     const token = localStorage.getItem('token');
     const navigate = useNavigate();
+    const [isLoadingPost, setIsLoadingPost] = useState(true);
 
     const HandleSavePost = async () => {
         try {
-            const response = await axios.get(`http://localhost:3001/savedpost/${id}`,{
+            axios.get(`http://localhost:3001/savedpost/${id}`,{
                 headers:{
                     "authorization":`Barrer ${token}` 
                 }
+            }).then(res => {
+                setIsLoadingPost(false);
+                console.log(res.data.result);
+                setPost(res.data.result);
             });
-            console.log(response.data.result);
-            setPost(response.data.result);
+           
         } catch (err) {
             console.log("Data not reached" + err);
             NotifyError("You are not Autherised please login again");
@@ -44,14 +48,16 @@ const SavedPosts = () => {
     return (
         <>
             <Navbar />
-            <section className='flex bg-black text-white h-full'>
+            <section className='flex bg-black text-white min-h-screen'>
                 <div className='flex-none fixed w-14'><Sidebar /></div>
                 {
+                    isLoadingPost && <SavePostSkeleton/>
+                }
+                {
                 post.length === 0 ? 
-                <div className='grow p-10 mx-12'>
-                    <SavePostSkeleton/>
-                    <SavePostSkeleton/>
-                    <SavePostSkeleton/>
+                <div className="text-gray-500 flex mt-40 text-5xl font-bold w-full justify-center ml-20">
+                    {/* <img src="/createpost.png" className="h-80 w-72 animate-pulse" title="Create new Post"/> */}
+                    No Saved Post
                 </div> 
                 :<div className='grow p-10 mx-12'>
                     <h1 className='font-bold text-center text-2xl'>Saved Post</h1>
@@ -59,7 +65,6 @@ const SavedPosts = () => {
                 </div>
                 }
             </section>
-            <ToastContainer />
             <ToastContainer
                 position="bottom-right"
                 autoClose={5000}

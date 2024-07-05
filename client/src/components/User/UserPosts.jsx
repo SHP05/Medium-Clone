@@ -8,7 +8,7 @@ import { ToastContainer } from 'react-toastify';
 import LikePostButton from "../UI/LikePostButton";
 import SavePostButton from "../UI/SavePostButton";
 import DateOfPost from "../UI/Date";
-import {NotifyError} from "../UI/Notification"
+import { NotifyError } from "../UI/Notification"
 
 const UserPost = () => {
 
@@ -54,10 +54,13 @@ const UserPost = () => {
             {
                 isLoadingPost && <UserPostSkeleton />
             }
-            <div className="flex posts mx-auto mb-5">
+            <div className="flex posts mx-auto items-center mb-5">
                 <ul className="grid lg:grid-cols-2 justify-center gap-4">
                     {
-                        posts.length === 0 ? (<h1> No Posts Found</h1>)
+                        posts.length === 0 ? (
+                            <div className="text-gray-500 flex mt-20 text-5xl font-bold w-full justify-center">
+                                Create a New Post
+                            </div> )
                             : posts.map((p) => (
                                 <div key={p._id} className='flex max-[1000px]:flex-wrap shadow-sm hover:shadow-xl shadow-gray-900 rounded-2xl bg-[#191c24] mt-5 text-gray-500'>
                                     <div className="m-5 w-60 align-middle">
@@ -82,15 +85,15 @@ const UserPost = () => {
                                                     <WhatsappIcon size={32} round={true}></WhatsappIcon>
                                                 </WhatsappShareButton>
                                             </span>
-                                            <SavePostButton pid={p._id} saved={(v)=>{ v && getUserPost() }}/>
-                                            <LikePostButton id={p._id} length={p.likes.length} liked={(v)=>{v && getUserPost()}}/>
+                                            <SavePostButton pid={p._id} saved={(v) => { v && getUserPost() }} />
+                                            <LikePostButton id={p._id} length={p.likes.length} liked={(v) => { v && getUserPost() }} />
                                         </ul>
                                     </div>
                                     <div className="p-5">
                                         <h1 className="flex">
                                             <img className="inline-block h-6 w-6 rounded-full ring-2 ring-white" src="https://images.unsplash.com/photo-1491528323818-fdd1faba62cc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="" />
                                             <h3 className="mx-5 text-gray-200">UserName</h3>
-                                            <DateOfPost postDate={p.postDate}/>
+                                            <DateOfPost postDate={p.postDate} />
                                         </h1>
                                         <h1 className='text-left text-gray-200 font-bold justify-center hover:font-extrabold hover:underline underline-offset-8 cursor-pointer' onClick={() => { navigate(`/post/${id}/${p._id}`) }}>{p.title}</h1>
                                         <p className='text-gray-500'>{p.shortDesc}</p>

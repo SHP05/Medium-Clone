@@ -35,7 +35,8 @@ const Post = () => {
                 <div className='bg-black mx-auto grow bg-fixed h-screen p-5'>
                     <div className="posts bg-[#191c24]  mx-auto text-white w-1/2 p-5 rounded-lg shadow-lg    align-middle">
                         <img src="" alt="post Image" className='h-32 mx-auto shadow-xl rounded-lg border ' />
-                        <span className='flex'><p className='font-bold text-3xl' >{postdata.title}</p>
+                        <span className='flex justify-between'>
+                            <p className='font-bold text-3xl mt-5' >{postdata.title}</p>
                             <DateOfPost postDate={postdata.postDate} className=' ml-4' />
                         </span>
                         <h3>{postdata.shortDesc}</h3>

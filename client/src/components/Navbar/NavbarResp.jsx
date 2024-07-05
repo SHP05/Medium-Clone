@@ -30,7 +30,7 @@ const Navbar = () => {
             <AccountMenu />
           </li>
           <li>
-            <NavLink to="/home" className="">
+            <NavLink to="/home" className="text-gray-400">
               {localStorage.getItem('name')}
             </NavLink>
           </li>

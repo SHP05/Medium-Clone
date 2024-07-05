@@ -1,6 +1,4 @@
-// import axios from "axios";
 import { useParams } from "react-router-dom";
-// import { useEffect, useState } from "react";
 import ProfileUpdate from "../components/User/ProfileUpdate";
 import Navbar from "../components/Navbar/NavbarResp";
 import Sidebar from "../components/Home/SideBar";

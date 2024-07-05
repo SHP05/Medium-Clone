@@ -3,7 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import UserProfileSkeleton from "../UI/UserPageSkeleton";
 import axios from "axios";
 import { NotifyError } from "../UI/Notification";
-import UploadProfileImg from "./UploadPRofileimg";
+// import UploadProfileImg from "./UploadPRofileimg";
 
 const UserProfile = () => {
     const { id } = useParams();
@@ -15,11 +15,6 @@ const UserProfile = () => {
     const [isLoadingUser, setIsLoadingUser] = useState(true);
     const token = localStorage.getItem('token');
     const navigate = useNavigate();
-
-    if (token === '')
-        console.log("Token is empty")
-    else
-        console.log(token);
     
     const getUserData = async () => {
         await axios.get(`http://localhost:3001/getuser/${id}`, {
@@ -98,16 +93,14 @@ const UserProfile = () => {
                                     }}
                                 />
                                 <button type="submit" className="ml-12" onClick={uploadImgHandeler}>Update Image</button>
-                                <UploadProfileImg id={id} />
+                                {/* <UploadProfileImg id={id} /> */}
                             </form>
                         </div>
                         <div className="profileData mx-4">
                             <h1 className="text-4xl font-semibold my-5">{name}</h1>
                             <p className="text-xl my-5">{desc}</p>
                             {/* Edit Button */}
-                            <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">
-                                Follow
-                            </button>
+                           
                         </div>
                     </div>
             }
