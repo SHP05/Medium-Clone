@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom"
 import Link from '@mui/joy/Link';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import {notifySuccess , notifyWarning } from '../components/UI/Notification'
+import { notifySuccess, notifyWarning } from '../components/UI/Notification'
 
 const Login = () => {
     const navigate = useNavigate();
@@ -18,9 +18,9 @@ const Login = () => {
 
         await axios.post('http://localhost:3001/login', { email, password })
             .then(result => {
-                localStorage.setItem("name",result.data.name);
-                localStorage.setItem("email",result.data.email);
-                localStorage.setItem("token",result.data.token);
+                localStorage.setItem("name", result.data.name);
+                localStorage.setItem("email", result.data.email);
+                localStorage.setItem("token", result.data.token);
                 console.log(result.data);
                 const id = result.data.userId;
                 notifySuccess();
@@ -77,8 +77,8 @@ const Login = () => {
                             <Link rel="stylesheet" href="/">Back to Home Page</Link>
                         </div>
                     </form>
-                </div>
-            </div>
+                </div >
+            </div >
             <ToastContainer />
             <ToastContainer
                 position="bottom-right"

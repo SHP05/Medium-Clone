@@ -103,11 +103,6 @@ const UserProfile = () => {
                         <div className="profileData mx-4">
                             <h1 className="text-4xl font-semibold my-5">{name}</h1>
                             <p className="text-xl my-5">{desc}</p>
-<<<<<<< HEAD
-                            {/* Edit Button */}
-                           
-=======
->>>>>>> c004ed356eefaf81db0fc2f75a23159b2c7a1c49
                         </div>
                     </div>
             }
