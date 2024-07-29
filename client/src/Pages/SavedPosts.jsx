@@ -14,6 +14,7 @@ const SavedPosts = () => {
   const token = localStorage.getItem("token");
   const navigate = useNavigate();
   const [isLoadingPost, setIsLoadingPost] = useState(true);
+  const [isEmptyIcon, setIsEmptyIcon] = useState(false);
 
   const HandleSavePost = async () => {
     try {
@@ -26,6 +27,9 @@ const SavedPosts = () => {
         .then((res) => {
           setIsLoadingPost(false);
           console.log(res.data.result);
+          if (res.data.result.length === 0) {
+            setIsEmptyIcon(true);
+          }
           setPost(res.data.result);
         });
     } catch (err) {
@@ -44,7 +48,6 @@ const SavedPosts = () => {
   useEffect(() => {
     HandleSavePost();
   }, [id]);
-
   return (
     <>
       <Navbar />
@@ -52,19 +55,22 @@ const SavedPosts = () => {
         <div className="flex-none fixed w-14">
           <Sidebar />
         </div>
-        {isLoadingPost && <SavePostSkeleton />}
-        {post.length === 0 ? (
-          <div className="text-gray-500 flex mt-40 text-5xl font-bold w-full justify-center ml-20">
-            {/* <img src="/createpost.png" className="h-80 w-72 animate-pulse" title="Create new Post"/> */}
-            No Saved Post
-          </div>
+        {isLoadingPost ? (
+          <SavePostSkeleton />
         ) : (
           <div className="grow p-10 mx-12">
-            <h1 className="font-bold text-center text-2xl">Saved Post</h1>
-            <DisplaySavedPost
-              posts={post}
-              message="You have not save any Post"
-            />
+            <h1 className="font-bold flex items-center justify-center text-center text-2xl">
+              {isEmptyIcon ? (
+                <img
+                  src="/emptypost.png"
+                  alt="Empty post Icon"
+                  style={{ height: "150px" }}
+                />
+              ) : (
+                "Saved Post"
+              )}
+            </h1>
+            <DisplaySavedPost posts={post} message="" />
           </div>
         )}
       </section>

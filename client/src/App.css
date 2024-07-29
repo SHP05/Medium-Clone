@@ -1,10 +1,10 @@
-*{
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   font-family: Roboto, Arial, sans-serif;
 }
-.icon:hover{
+.icon:hover {
   color: white;
 }
 
@@ -15,6 +15,12 @@
 .sharebtn:hover + .sharebtn-dropdown,
 .sharebtn:focus + .sharebtn-dropdown {
   display: block;
+}
+
+@media (max-width: 1030px) {
+  .popular-post {
+    display: none;
+  }
 }
 
 .sharebtn-dropdown {
