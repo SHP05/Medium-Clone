@@ -1,8 +1,7 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate , useParams} from 'react-router-dom';
-import Sidebar from '../components/Home/SideBar';
-import Navbar from '../components/Navbar/NavbarResp';
+
 
 const UpdatePost = ()=>{
     const navigate = useNavigate();
@@ -42,10 +41,8 @@ const UpdatePost = ()=>{
     ,[])
     return(
         <>
-        <Navbar useId={id}/>
             <section className='bg-gray-950'>
             <div className='flex bg-gray-950 h-full'>
-                <div className='flex-none fixed w-14'><Sidebar/></div>
                 <div className="bg-gray-800 grow mx-20">
             <h1 className="text-white text-3xl bg-gray-950 font-bold text-center p-3">📃 Update Your Post 📃</h1>
             <form className="bg-gray-950 text-lg flex" onSubmit={updatePostHandler}>

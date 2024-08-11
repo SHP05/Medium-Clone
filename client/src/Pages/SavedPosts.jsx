@@ -1,8 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import Navbar from "../components/Navbar/NavbarResp";
-import Sidebar from "../components/Home/SideBar";
 import SavePostSkeleton from "../components/UI/SavePostPageSkeleton";
 import DisplaySavedPost from "../components/User/DisplaySavedPost";
 import { NotifyError } from "../components/UI/Notification";
@@ -50,11 +48,7 @@ const SavedPosts = () => {
   }, [id]);
   return (
     <>
-      <Navbar />
       <section className="flex bg-black text-white min-h-screen">
-        <div className="flex-none fixed w-14">
-          <Sidebar />
-        </div>
         {isLoadingPost ? (
           <SavePostSkeleton />
         ) : (

@@ -10,6 +10,8 @@ import FronPage from "./Pages/FrontPage";
 import UpdatePost from "./Pages/UpdatePost";
 import SavedPosts from "./Pages/SavedPosts";
 import ScrollTop from "./components/UI/ScrollTop";
+import Applayout from "./components/UI/Applayout";
+import Error404Page from "./Pages/Error404Page";
 
 function App() {
   return (
@@ -19,12 +21,15 @@ function App() {
           <Route path="/" element={<FronPage />}></Route>
           <Route path="/signup" element={<Signup />}></Route>
           <Route path="/login" element={<Login />}></Route>
-          <Route path="/home/:id" element={<Home />}></Route>
-          <Route path="/user/:id" element={<User />}></Route>
-          <Route path="/post/:id/:pid" element={<Post />}></Route>
-          <Route path="/createpost/:id" element={<CreatePost />}></Route>
-          <Route path="/updatepost/:id/:pid" element={<UpdatePost />}></Route>
-          <Route path="/savedpost/:id" element={<SavedPosts />}></Route>
+        <Route element={<Applayout />}>
+            <Route path="/user/:id" element={<User />}></Route>
+            <Route path="/home/:id" element={<Home />}></Route>
+            <Route path="/post/:id/:pid" element={<Post />}></Route>
+            <Route path="/createpost/:id" element={<CreatePost />}></Route>
+            <Route path="/updatepost/:id/:pid" element={<UpdatePost />}></Route>
+            <Route path="/savedpost/:id" element={<SavedPosts />}></Route>
+          </Route>
+          <Route path="*" element={<Error404Page />}></Route>
         </Routes>
         <ScrollTop />
       </BrowserRouter>

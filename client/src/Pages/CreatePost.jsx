@@ -1,8 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from 'axios';
 import { useParams, useNavigate, json } from 'react-router-dom'
-import Navbar from "../components/Navbar/NavbarResp";
-import Sidebar from "../components/Home/SideBar";
 
 const CreatePost = () => {
     const { id } = useParams();
@@ -43,9 +41,7 @@ const CreatePost = () => {
     }, [])
     return (
         <>
-            <Navbar />
             <div className="flex bg-gray-950 h-full">
-                <div className="flex-none fixed w-14"><Sidebar /></div>
                 <div className="bg-gray-950 grow mx-20 ">
                     <h1 className="text-white text-3xl font-bold text-center mb-3">📃 Create New Post 📃</h1>
                     <form className="bg-gray-850 text-lg flex" onSubmit={PostSubmitHandler}>
