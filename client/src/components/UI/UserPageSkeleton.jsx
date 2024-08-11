@@ -11,9 +11,9 @@ const UserProfileSkeleton = () =>{
                             </div>
                     </div>
                     <div className="profileData mx-4">
-                        <Skeleton className="text-4xl font-semibold my-5 w-96" baseColor='#36454F'></Skeleton>
-                        <Skeleton className="text-xl my-5 w-60" baseColor='#36454F'></Skeleton>
-                        <Skeleton className="py-2 px-4 rounded-full w-32" baseColor='#36454F'></Skeleton>
+                        <Skeleton width={"200px"} className="text-4xl font-semibold my-5 w-96" baseColor='#36454F'></Skeleton>
+                        <Skeleton width={"300px"} className="text-xl my-5 w-60" baseColor='#36454F'></Skeleton>
+                        {/* <Skeleton className="py-2 px-4 rounded-full w-32" baseColor='#36454F'></Skeleton> */}
                     </div>
                 </div>
         </>
