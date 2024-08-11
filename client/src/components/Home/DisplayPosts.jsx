@@ -90,11 +90,21 @@ const DisplayPost = (Props) => {
             </div>
             <div className="p-8 text-gray-500">
               <h1 className="flex">
-                <img
+                {/* <img
                   className="inline-block h-8 w-8 rounded-full ring-2 ring-white"
                   src="https://images.unsplash.com/photo-1491528323818-fdd1faba62cc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
                   alt=""
-                />
+                /> */}
+                <a
+                  href={`http://localhost:5173/user/${p.userId}`}
+                  target="_blank"
+                  rel="noreferrer"
+                  // onClick={() =>
+                  //   navigate(`http://localhost:5173/user/${p.userId}`)
+                  // }
+                >
+                  {p.userName}
+                </a>
                 <p className="mx-5 text-gray-200 text-xl">{p.name}</p>
                 <DateOfPost postDate={p.postDate} />
               </h1>
