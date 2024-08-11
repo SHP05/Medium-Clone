@@ -21,6 +21,7 @@ const Login = () => {
         localStorage.setItem("email", result.data.email);
         localStorage.setItem("token", result.data.token);
         localStorage.setItem("uuid", result.data.userId);
+        localStorage.setItem("avatar", result.data.userData.img);
         console.log(result.data);
         const id = result.data.userId;
         notifySuccess();
