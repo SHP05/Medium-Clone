@@ -9,6 +9,7 @@ const {
   getAllPost,
   AddLikes,
   SearchPost,
+  UploadPostCoverImage,
 } = require('../controllers/post');
 const { authenticateToken } = require('../middleware/auth');
 
@@ -20,6 +21,7 @@ router.get('/getpost/:id', getPost);
 router.get('/getallpost', getAllPost);
 router.put('/addlikes/', AddLikes);
 router.get('/search/', SearchPost);
+router.put('/uploadcoverimg/:pid',UploadPostCoverImage)
 
 // Upload post img
 

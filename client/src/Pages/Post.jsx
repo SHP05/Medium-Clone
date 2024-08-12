@@ -31,7 +31,7 @@ const Post = () => {
         <div className="bg-black mx-auto grow bg-fixed h-screen p-5">
           <div className="posts bg-[#191c24]  mx-auto text-white w-1/2 p-5 rounded-lg shadow-lg    align-middle">
             <img
-              src=""
+              src={`http://localhost:3001/postimg/${postdata.image}`}
               alt="post Image"
               className="h-32 mx-auto shadow-xl rounded-lg border "
             />
