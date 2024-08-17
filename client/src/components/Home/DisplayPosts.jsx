@@ -99,9 +99,9 @@ const DisplayPost = (Props) => {
                   href={`http://localhost:5173/user/${p.userId}`}
                   target="_blank"
                   rel="noreferrer"
-                // onClick={() =>
-                //   navigate(`http://localhost:5173/user/${p.userId}`)
-                // }
+                  // onClick={() =>
+                  //   navigate(`http://localhost:5173/user/${p.userId}`)
+                  // }
                 >
                   {p.userName}
                 </a>

@@ -50,9 +50,12 @@ const SavedPosts = () => {
     <>
       <section className="flex bg-black text-white min-h-screen">
         {isLoadingPost ? (
-          <SavePostSkeleton />
+          <div className="grow p-10 mx-12">
+            <SavePostSkeleton />
+          </div>
         ) : (
           <div className="grow p-10 mx-12">
+            <SavePostSkeleton />
             <h1 className="font-bold flex items-center justify-center text-center text-2xl">
               {isEmptyIcon ? (
                 <img

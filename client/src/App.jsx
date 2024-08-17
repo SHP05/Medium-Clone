@@ -21,7 +21,7 @@ function App() {
           <Route path="/" element={<FronPage />}></Route>
           <Route path="/signup" element={<Signup />}></Route>
           <Route path="/login" element={<Login />}></Route>
-        <Route element={<Applayout />}>
+          <Route element={<Applayout />}>
             <Route path="/user/:id" element={<User />}></Route>
             <Route path="/home/:id" element={<Home />}></Route>
             <Route path="/post/:id/:pid" element={<Post />}></Route>
