@@ -76,7 +76,7 @@ const UserPost = () => {
               >
                 <div className="m-5 w-60 align-middle">
                   <img
-                    src=""
+                    src={`http://localhost:3001/postimg/${p.image}`}
                     alt="user"
                     className="w-32 h-32 rounded-2xl justify-start mx-auto shadow-md shadow-gray-700"
                   />
@@ -87,6 +87,7 @@ const UserPost = () => {
                         hashtag="#React"
                         url="https://www.facebook.com/"
                         title="Send message on Facebook"
+                        className="hover:scale-90"
                       >
                         <FacebookIcon size={35} round={true}></FacebookIcon>
                       </FacebookShareButton>
@@ -96,6 +97,7 @@ const UserPost = () => {
                         title={p.title}
                         separator={p.title}
                         url="https://web.whatsapp.com/"
+                        className="hover:scale-90"
                       >
                         <WhatsappIcon size={35} round={true}></WhatsappIcon>
                       </WhatsappShareButton>

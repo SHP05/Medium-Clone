@@ -1,4 +1,6 @@
+const multer = require('multer');
 const posts = require('../model/postmodel');
+const path = require('path');
 
 const createPost = async (req, res, next) => {
   let id = req.params.id;
@@ -149,6 +151,66 @@ const SearchPost = async (req, res) => {
   }
 };
 
+const imgpath = path.join(__dirname, '../../Images/postImg');
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, imgpath);
+  },
+  filename: function (req, file, cb) {
+    const uniqueSuffix = Date.now();
+    cb(null, uniqueSuffix + file.originalname);
+  },
+});
+const upload = multer({ storage: storage });
+const uploadmiddleware = upload.single('postimg');
+const UploadPostCoverImage = async (req, res) => {
+  try {
+    console.log('Api Called');
+    await new Promise((resolve, reject) => {
+      uploadmiddleware(req, res, function (err) {
+        if (err instanceof multer.MulterError) {
+          reject({ status: 400, message: err });
+        } else if (err) {
+          reject({ status: 500, message: 'File Upload Fail !!' });
+        } else {
+          resolve();
+        }
+      });
+    });
+    console.log(req.file);
+
+    if (!req.file) {
+      return res.status(400).json({ message: 'No file uploaded' });
+    }
+
+    const imgName = req.file.filename;
+    const id = req.params.pid;
+
+    const post = await posts.findById({ _id: id });
+    if (post) {
+      const updatedPost = await posts.findByIdAndUpdate(
+        { _id: id },
+        { image: imgName },
+        { new: true }
+      );
+
+      res.status(200).json({
+        message: 'Cover Image Uploaded successfully',
+        data: updatedPost,
+      });
+    } else {
+      return res.status(400).json({ message: 'No Post Found' });
+    }
+  } catch (err) {
+    if (err.status) {
+      res.status(err.status).json({ message: err.message });
+    }
+    console.log(err);
+
+    res.status(500).json({ message: 'Internal Server Error', error: err });
+  }
+};
+
 module.exports = {
   createPost,
   getUserPost,
@@ -158,4 +220,5 @@ module.exports = {
   getAllPost,
   AddLikes,
   SearchPost,
+  UploadPostCoverImage,
 };

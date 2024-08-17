@@ -11,5 +11,5 @@ ReactDOM.createRoot(document.getElementById("root")).render(
     <Suspense fallback={<Spinner />}>
       <LazyApp />
     </Suspense>
-  </React.StrictMode>
+  </React.StrictMode>,
 );

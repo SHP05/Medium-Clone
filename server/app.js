@@ -19,11 +19,13 @@ app.use('/', userRoute);
 app.use('/', postRoute);
 
 const avatar_path = path.join(__dirname + '/Images/avatar');
+const postImagePath = path.join(__dirname , '/Images/postImg');
 
 app.get('/', (req, res) => {
   res.json('hello welcome');
 });
 app.use('/avatar', express.static(avatar_path));
+app.use('/postimg', express.static(postImagePath));
 
 app.listen(PORT, () =>
   console.log(`server is running on http://localhost:${PORT}`)

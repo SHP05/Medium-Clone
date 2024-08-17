@@ -46,7 +46,7 @@ const DisplayPost = (Props) => {
             {/*bg-slate-900*/}
             <div className="m-5">
               <img
-                src=""
+                src={`http://localhost:3001/postimg/${p.image}`}
                 alt="user"
                 className="w-32 h-32 rounded-2xl justify-start mx-auto shadow-md shadow-gray-700"
               />

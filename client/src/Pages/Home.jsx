@@ -1,10 +1,8 @@
 import axios from "axios";
 import "../index.css";
-import Navbar from "../components/Navbar/NavbarResp";
 import { useParams } from "react-router-dom";
 import { useEffect } from "react";
 import PostList from "../components/Home/PostList";
-import Sidebar from "../components/Home/SideBar";
 import Filter from "../components/Home/Fiters";
 
 const Home = () => {
@@ -25,11 +23,7 @@ const Home = () => {
 
   return (
     <>
-      <Navbar />
       <div className="flex bg-black h-full ">
-        <div className="flex-none fixed w-14">
-          <Sidebar userId={id} />
-        </div>
         <div className="grow p-10 mx-12">
           <PostList Id={id} />
         </div>

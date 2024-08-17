@@ -27,7 +27,6 @@ const SavePostButton = ({ pid, saved }) => {
           className="hover:scale-90"
         />
       </li>{" "}
-      {/*<i class="fa-solid fa-bookmark"></i> <i className="fa-regular fa-bookmark fa-xl m-3" style={{ color: "rgb(229 231 235)" }}></i>*/}
     </>
   );
 };

@@ -1,8 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import Navbar from "../components/Navbar/NavbarResp";
-import Sidebar from "../components/Home/SideBar";
 import { FacebookShareButton, WhatsappShareButton } from "react-share";
 import { FacebookIcon, WhatsappIcon } from "react-share";
 import DateOfPost from "../components/UI/Date";
@@ -29,16 +27,11 @@ const Post = () => {
   }, []);
   return (
     <>
-      <Navbar />
-
       <div className="flex bg-gray-950 h-full">
-        <div className="flex-none fixed w-14">
-          <Sidebar userId={id} />
-        </div>
         <div className="bg-black mx-auto grow bg-fixed h-screen p-5">
           <div className="posts bg-[#191c24]  mx-auto text-white w-1/2 p-5 rounded-lg shadow-lg    align-middle">
             <img
-              src=""
+              src={`http://localhost:3001/postimg/${postdata.image}`}
               alt="post Image"
               className="h-32 mx-auto shadow-xl rounded-lg border "
             />
