@@ -6,7 +6,7 @@ function Applayout() {
   return (
     <div className="h-screen">
       <Navbar />
-      <div className="absolute">
+      <div className="fixed">
         <Sidebar />
       </div>
       <main>

@@ -9,7 +9,7 @@ import { ToastContainer } from "react-toastify";
 import LikePostButton from "../components/UI/LikePostButton";
 
 const Post = () => {
-  const { id, pid } = useParams();
+  const { pid } = useParams();
   const [postdata, setPostdata] = useState([]);
 
   const getPost = async () => {
@@ -33,16 +33,19 @@ const Post = () => {
             <img
               src={`http://localhost:3001/postimg/${postdata.image}`}
               alt="post Image"
-              className="h-32 mx-auto shadow-xl rounded-lg border "
+              className="h-60 w-auto mx-auto shadow-xl rounded-lg"
             />
+
             <span className="flex justify-between">
               <p className="font-bold text-3xl mt-5">{postdata.title}</p>
               <DateOfPost postDate={postdata.postDate} className=" ml-4" />
             </span>
-            <h3>{postdata.shortDesc}</h3>
-            <p className="underline">Description</p>
+
+            <h3>Category : {postdata.catagory}</h3>
+            <p className="mt-5">{postdata.shortDesc}</p>
+            <p className="text-2xl mt-5">Description</p>
             <h3>{postdata.desc}</h3>
-            <h3>{postdata.catagory}</h3>
+
             <ul className="flex mt-4 justify-start gap-2 items-center">
               <span className=" mb-1 hover:scale-90">
                 <FacebookShareButton

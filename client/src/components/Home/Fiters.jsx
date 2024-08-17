@@ -1,4 +1,4 @@
-import PopularPostCard from "../PopularPostCard";
+import PopularPostCard from "./PopularPostCard";
 
 export default function BioCard() {
   return (

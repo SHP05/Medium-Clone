@@ -78,7 +78,7 @@ const UserPost = () => {
                   <img
                     src={`http://localhost:3001/postimg/${p.image}`}
                     alt="user"
-                    className="w-32 h-32 rounded-2xl justify-start mx-auto shadow-md shadow-gray-700"
+                    className="w-40 h-32 rounded-2xl justify-start mx-auto shadow-md shadow-gray-700"
                   />
                   <ul className="flex mt-10 items-center justify-center">
                     <span className=" mx-1 mb-1">
@@ -138,7 +138,6 @@ const UserPost = () => {
                   <p className="text-gray-500">
                     {formateStringInUser(p.shortDesc)}
                   </p>
-                  {/* <p>{p.desc}</p> */}
                   <h3>{p.catagory}</h3>
                   <div className="mt-5 -mb-5">
                     <ul className="flex gap-4 align-middle">

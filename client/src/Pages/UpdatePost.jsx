@@ -75,19 +75,19 @@ const UpdatePost = () => {
             </h1>
             <form
               onSubmit={uploadPostImg}
-              className="bg-gray-950 text-lg flex flex-col w-2/3 mx-auto"
+              className="bg-gray-950 text-lg flex flex-col w-2/3 items-center mx-auto border rounded-lg p-3 border-gray-500 mb-5"
             >
               <img
                 src={`http://localhost:3001/postimg/${postimg}`}
                 alt="post Image"
-                className="w-52 h-52 rounded-2xl"
+                className="w-auto h-52 rounded-2xl my-6"
               ></img>
-              <label
+              {/* <label
                 className="block mb-1 font-medium text-gray-300"
                 htmlFor="default_size"
               >
                 Update Cover Image for your Blog
-              </label>
+              </label> */}
               <input
                 name="image"
                 type="file"
@@ -161,7 +161,9 @@ const UpdatePost = () => {
                   Select Post Category
                 </label>
                 <select
-                  name="catagory"
+                  name="category"
+                  defaultChecked={category}
+                  defaultValue={category}
                   onChange={(e) => setCategory(e.target.value)}
                   id="countries"
                   className="bg-gray-500/25 border border-gray-500 text-gray-200 text-lg rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"

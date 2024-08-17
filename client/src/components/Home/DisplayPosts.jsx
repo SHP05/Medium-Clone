@@ -40,18 +40,17 @@ const DisplayPost = (Props) => {
         PostData.map((p) => (
           <div
             key={p._id}
-            className="flex max-[1000px]:flex-wrap w-full border border-gray-600 shadow-lg shadow-gray-700 hover:border-gray-400 hover:shadow-xl text-white rounded-2xl bg-[#191c24] mt-5 backdrop-blur-xxl bg-opacity-10 bg-white duration-500"
+            className="flex max-[1000px]:flex-wrap w-full border border-gray-600 shadow-lg shadow-gray-700 hover:border-gray-400 hover:shadow-lg text-white rounded-2xl bg-[#191c24] mt-5 border-gray-600 shadow-lg shadow-gray-700 hover:border-gray-400 hover:shadow-xl duration-500"
           >
             {" "}
-            {/*bg-slate-900*/}
             <div className="m-5">
               <img
                 src={`http://localhost:3001/postimg/${p.image}`}
                 alt="user"
-                className="w-32 h-32 rounded-2xl justify-start mx-auto shadow-md shadow-gray-700"
+                className="w-48 h-32 rounded-2xl justify-start mx-auto shadow-md shadow-gray-700"
               />
               <ul className="flex mt-10 items-center gap-1">
-                <span className="mx-2 mb-1 hover:scale-90">
+                <span className="mx-1 mb-1 hover:scale-90">
                   <FacebookShareButton
                     quote={p.title}
                     hashtag="#React"
@@ -62,7 +61,7 @@ const DisplayPost = (Props) => {
                   </FacebookShareButton>
                 </span>
 
-                <span className=" mx-2 mb-1 hover:scale-90">
+                <span className="mx-1 mb-1 hover:scale-90">
                   <WhatsappShareButton
                     title={p.title}
                     separator={p.title}
