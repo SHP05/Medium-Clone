@@ -26,8 +26,6 @@ const DisplaySavedPost = (Props) => {
             key={p._id}
             className="flex max-[1000px]:flex-wrap w-full text-white rounded-2xl bg-[#191c24] mt-5 border border-gray-600 shadow-lg shadow-gray-700 hover:border-gray-400 hover:shadow-xl duration-500"
           >
-            {" "}
-            {/*bg-slate-900*/}
             <div className="p-8 text-gray-500">
               <h1 className="flex">
                 <img

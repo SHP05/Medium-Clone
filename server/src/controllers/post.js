@@ -151,6 +151,7 @@ const SearchPost = async (req, res) => {
   }
 };
 
+//Upload img
 const imgpath = path.join(__dirname, '../../Images/postImg');
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {

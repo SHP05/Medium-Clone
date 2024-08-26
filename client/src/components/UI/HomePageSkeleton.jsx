@@ -4,7 +4,7 @@ import "react-loading-skeleton/dist/skeleton.css";
 const HomePageSkeleton = () => {
   return (
     <>
-      <div className="rounded-lg bg-slate-900 flex flex-wrap">
+      <div className="rounded-lg bg-slate-900 flex flex-wrap mt-5">
         <Skeleton
           width={"150px"}
           count={1}
@@ -30,7 +30,7 @@ const HomePageSkeleton = () => {
           />
         </div>
       </div>
-      <div className="rounded-lg bg-slate-900 flex flex-wrap">
+      <div className="rounded-lg bg-slate-900 flex flex-wrap mt-5">
         <Skeleton
           width={"150px"}
           count={1}
@@ -56,7 +56,7 @@ const HomePageSkeleton = () => {
           />
         </div>
       </div>
-      <div className="rounded-lg bg-slate-900 flex flex-wrap">
+      <div className="rounded-lg bg-slate-900 flex flex-wrap mt-5">
         <Skeleton
           width={"150px"}
           count={1}

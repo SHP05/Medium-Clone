@@ -17,31 +17,6 @@ const upload = multer({ storage: storage });
 
 const uploadmiddleware = upload.single('file');
 
-// async function updateUSer(req, res) {
-//   uploadmiddleware(req, res, async (err) => {
-//     if (err instanceof multer.MulterError) {
-//       return res.status(400).json({ msg: err.message });
-//     } else {
-//       return res.status(500).json({ msg: 'File Upload Fail !!' });
-//     }
-//   });
-//   try {
-//     let imgName = req.file.filename;
-//     let id = req.params.id;
-//     console.log(id);
-//     const user = await User.findById({ _id: id });
-//     if (user) {
-//       await User.findByIdAndUpdate({ _id: id }, { img: imgName })
-//         .then((result) => {
-//           res.json({ message: 'Profile image Uploaded', data: result });
-//         })
-//         .catch((err) => res.status(404).json(err));
-//     }
-//   } catch (err) {
-//     res.status(404).json({ message: 'User Not Found', err });
-//   }
-// }
-
 async function updateUSer(req, res) {
   try {
     await new Promise((resolve, reject) => {

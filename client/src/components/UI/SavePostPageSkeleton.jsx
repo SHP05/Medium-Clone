@@ -12,13 +12,21 @@ const SavePostSkeleton = () => {
                 className="mx-1 rounded h-10 w-10"
                 baseColor="#36454F"
                 count={1}
-                style={{width:"40px"}}
+                style={{ width: "40px" }}
                 circle
               />
-              <Skeleton style={{width:"50%"}} className="mx-2 w-52 h-10" baseColor="#36454F" />
+              <Skeleton
+                style={{ width: "50%" }}
+                className="mx-2 h-10 px-40"
+                baseColor="#36454F"
+              />
             </li>
             <li>
-              <Skeleton style={{width:"50%"}} className="mx-2 h-20 mt-4" baseColor="#36454F" />
+              <Skeleton
+                style={{ width: "100%" }}
+                className="mx-2 h-20 mt-4"
+                baseColor="#36454F"
+              />
             </li>
           </ul>
         </div>

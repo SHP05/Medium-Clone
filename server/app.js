@@ -9,7 +9,6 @@ const PORT = process.env.PORT || 3001;
 const bodyParser = require('body-parser');
 const path = require('path');
 
-console.log(process.env.PORT);
 app.use(cors());
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -19,7 +18,7 @@ app.use('/', userRoute);
 app.use('/', postRoute);
 
 const avatar_path = path.join(__dirname + '/Images/avatar');
-const postImagePath = path.join(__dirname , '/Images/postImg');
+const postImagePath = path.join(__dirname, '/Images/postImg');
 
 app.get('/', (req, res) => {
   res.json('hello welcome');
@@ -30,3 +29,4 @@ app.use('/postimg', express.static(postImagePath));
 app.listen(PORT, () =>
   console.log(`server is running on http://localhost:${PORT}`)
 );
+// https://github.com/nisabmohd/Medium-clone/

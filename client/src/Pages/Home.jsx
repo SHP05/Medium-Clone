@@ -3,7 +3,7 @@ import "../index.css";
 import { useParams } from "react-router-dom";
 import { useEffect } from "react";
 import PostList from "../components/Home/PostList";
-import Filter from "../components/Home/Fiters";
+import Filter from "../components/Home/PopularPost";
 
 const Home = () => {
   const { id } = useParams();
