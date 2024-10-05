@@ -70,8 +70,8 @@ Fellow Post(Medium Clone) is crafted to deliver a modern, engaging platform for 
 1. **Clone the repository**:
 
    ```bash
-   git clone https://github.com/yourusername/fellow-post.git
-   cd fellow-post
+   git clone https://github.com/SHP05/Medium-Clone.git
+   cd Medium-Clone
    ```
 
 2. **Install dependencies** for both frontend and backend:
@@ -92,12 +92,13 @@ Fellow Post(Medium Clone) is crafted to deliver a modern, engaging platform for 
 
    - Start the backend server:
      ```bash
-     npm run dev
+     cd server
+     npm start
      ```
    - Start the frontend server:
      ```bash
-     cd ../frontend
-     npm start
+     cd client
+     npm run dev
      ```
 
 5. **Open the app** in your browser:
