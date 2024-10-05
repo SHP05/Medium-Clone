@@ -28,8 +28,8 @@ const Post = () => {
   return (
     <>
       <div className="flex bg-gray-950 h-full">
-        <div className="bg-black mx-auto grow bg-fixed h-screen p-5">
-          <div className="posts bg-[#191c24]  mx-auto text-white w-1/2 p-5 rounded-lg shadow-lg    align-middle">
+        <div className="bg-black mx-auto grow bg-fixed h-full p-5">
+          <div className="posts bg-[#191c24]  mx-auto text-white w-2/3 p-5 rounded-lg shadow-lg    align-middle">
             <img
               src={`http://localhost:3001/postimg/${postdata.image}`}
               alt="post Image"

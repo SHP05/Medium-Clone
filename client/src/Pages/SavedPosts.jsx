@@ -63,7 +63,7 @@ const SavedPosts = () => {
                   style={{ height: "150px" }}
                 />
               ) : (
-                "Saved Post"
+                "Saved Blogs"
               )}
             </h1>
             <DisplaySavedPost posts={post} message="" />

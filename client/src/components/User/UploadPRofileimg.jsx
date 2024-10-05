@@ -67,7 +67,17 @@ function UploadProfileImg({ id }) {
   };
   return (
     <div>
-      <input type="file" onChange={handleFileChange} />
+      <input
+        type="file"
+        onChange={handleFileChange}
+        className="border-none outline-none "
+      />
+      <input
+        className="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
+        type="file"
+        onChange={handleFileChange}
+        multiple
+      />
       <button
         type="button"
         onClick={() => console.log("Upload Button clicked")}
